@@ -1,36 +1,98 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Sanity Clean Content Studio
 
-## Getting Started
+Congratulations, you have now installed the Sanity Content Studio, an open-source real-time content editing environment connected to the Sanity backend.
 
-First, run the development server:
+Now you can do the following things:
+
+- [Read “getting started” in the docs](https://www.sanity.io/docs/introduction/getting-started?utm_source=readme)
+- [Join the Sanity community](https://www.sanity.io/community/join?utm_source=readme)
+- [Extend and build plugins](https://www.sanity.io/docs/content-studio/extending?utm_source=readme)
+
+# Product Catalog MVP
+
+A responsive e-commerce product catalog built with Next.js, TypeScript, Sanity CMS, and Tailwind CSS.
+
+![Next.js](https://img.shields.io/badge/Next.js-14-black) ![TypeScript](https://img.shields.io/badge/TypeScript-5-blue) ![Tailwind](https://img.shields.io/badge/Tailwind-3-cyan) ![Sanity](https://img.shields.io/badge/Sanity-3-red)
+
+## Features
+
+- 🛍️ Product listing with responsive grid
+- 🔍 Real-time search and filtering
+- 💰 Price range and category filters
+- 📊 Sort by price and name
+- 📱 Mobile-first responsive design
+- 🖼️ Product detail pages with related products
+- ⚡ Optimized images and performance
+
+## Tech Stack
+
+- **Frontend**: Next.js 14, TypeScript, Tailwind CSS
+- **CMS**: Sanity Studio
+- **Icons**: Heroicons
+
+## Quick Start
+
+### 1. Setup Frontend
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npx create-next-app@latest product-catalog-frontend --typescript --tailwind --app
+cd product-catalog-frontend
+npm install @sanity/client @sanity/image-url next-sanity @heroicons/react clsx
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Setup Sanity
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+cd ..
+sanity init  # Choose: Clean project, TypeScript, output: product-catalog-sanity
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 3. Environment Variables
 
-## Learn More
+Create `product-catalog-frontend/.env.local`:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+NEXT_PUBLIC_SANITY_PROJECT_ID=your_project_id
+NEXT_PUBLIC_SANITY_DATASET=production
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 4. Run Applications
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+# Terminal 1 - Frontend (Port 3000)
+cd product-catalog-frontend && npm run dev
 
-## Deploy on Vercel
+# Terminal 2 - Sanity Studio (Port 3333)
+cd product-catalog-sanity && sanity dev
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Project Structure
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+├── product-catalog-frontend/    # Next.js app
+│   ├── src/app/                # Pages (listing, detail)
+│   ├── src/components/         # UI components
+│   ├── src/lib/               # Sanity client
+│   └── src/types/             # TypeScript types
+└── product-catalog-sanity/     # Sanity studio
+    ├── schemas/               # Content schemas
+    └── sanity.config.ts      # Configuration
+```
+
+## Schema (Sanity)
+
+Products have: `title`, `description`, `image`, `category`, `price`, `availability`, `slug`
+
+## Demo URLs
+
+- Frontend: http://localhost:3000
+- Sanity Studio: http://localhost:3333
+
+## Deployment
+
+- **Frontend**: Deploy to Vercel
+- **Sanity**: Run `sanity deploy` in studio directory
+
+---
+
+Built for Product Catalog MVP assignment ⚡
